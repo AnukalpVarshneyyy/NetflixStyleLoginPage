@@ -1,0 +1,187 @@
+<!-- This Project Is Developed By Anukalp Varshney -->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Netflix Login Page Design (Anukalp Varshney)</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=000000') center/cover no-repeat;
+      color:#fff;
+      display:flex;align-items:center;justify-content:center; padding:40px;
+      animation: fadeInBg 1.2s ease forwards;
+    }
+
+    @keyframes fadeInBg {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
+
+    .brand{
+      position:fixed;left:40px;top:20px;font-weight:700;letter-spacing:2px;font-size:32px;color:#e50914;
+      text-decoration:none;
+      animation: slideDown 0.8s ease forwards;
+    }
+
+    @keyframes slideDown {
+      from {transform: translateY(-30px); opacity:0;}
+      to {transform: translateY(0); opacity:1;}
+    }
+
+    .login-card{
+      width:100%;max-width:420px;background:rgba(0,0,0,0.72);border-radius:6px;padding:48px 48px 36px;box-shadow:0 10px 30px rgba(0,0,0,0.6);
+      animation: popIn 0.8s ease forwards;
+    }
+
+    @keyframes popIn {
+      from {transform: scale(0.95); opacity:0;}
+      to {transform: scale(1); opacity:1;}
+    }
+
+    .login-card h1{font-size:28px;margin-bottom:18px;font-weight:700;animation: fadeInUp 0.8s ease forwards;animation-delay:0.2s;opacity:0}
+    .login-card p.sub{color:#b3b3b3;margin-bottom:20px;animation: fadeInUp 0.8s ease forwards;animation-delay:0.3s;opacity:0}
+
+    @keyframes fadeInUp {
+      from {transform: translateY(20px); opacity:0;}
+      to {transform: translateY(0); opacity:1;}
+    }
+
+    .form-group, .controls, .btn, .divider, .help, .small, .legal {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity:0;
+    }
+    .form-group:nth-child(1){animation-delay:0.4s}
+    .form-group:nth-child(2){animation-delay:0.5s}
+    .controls{animation-delay:0.6s}
+    .btn{animation-delay:0.7s}
+    .divider{animation-delay:0.8s}
+    .help{animation-delay:0.9s}
+    .small{animation-delay:1s}
+    .legal{animation-delay:1.1s}
+
+    label{display:block;font-size:13px;margin-bottom:6px;color:#b3b3b3}
+    input[type="email"], input[type="password"]{
+      width:100%;padding:12px 14px;border-radius:4px;border:0;background:#333;color:#fff;font-size:16px;outline:none;
+      transition: background 0.3s ease;
+    }
+    input:focus{background:#444}
+    input::placeholder{color:#8c8c8c}
+
+    .controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .checkbox{display:flex;align-items:center;gap:8px;color:#b3b3b3;font-size:13px}
+    .checkbox input{width:16px;height:16px}
+
+    .btn{
+      width:100%;padding:12px;border-radius:4px;background:#e50914;border:0;color:white;font-weight:700;font-size:16px;cursor:pointer;
+      transition:transform .2s ease,box-shadow .2s ease, background 0.3s ease;
+    }
+    .btn:hover{background:#f6121d;box-shadow:0 4px 15px rgba(229,9,20,0.4);transform:translateY(-2px)}
+    .btn:active{transform:translateY(1px)}
+
+    .help a{color:#b3b3b3;text-decoration:underline}
+    .divider{height:1px;background:rgba(255,255,255,0.06);margin:18px 0}
+    .small{font-size:13px;color:#8c8c8c}
+    .legal{margin-top:18px;color:#666;font-size:13px}
+
+    @media (max-width:480px){
+      .brand{left:18px;font-size:26px}
+      .login-card{padding:32px 20px}
+    }
+
+    .error{background:#3e1a1a;color:#ffdbdb;padding:10px;border-radius:4px;margin-bottom:12px;border-left:4px solid #ff6b6b;font-size:14px;animation: shake 0.4s ease}
+
+    @keyframes shake {
+      0%, 100% {transform: translateX(0);}
+      25% {transform: translateX(-5px);}
+      50% {transform: translateX(5px);}
+      75% {transform: translateX(-5px);}
+    }
+  </style>
+</head>
+<body>
+  <a class="brand" href="#">NETFLIX</a>
+
+  <main class="login-card" role="main">
+    <h1>Sign In</h1>
+    <p class="sub">Welcome back. Enter your email and password to continue.</p>
+
+    <div id="errorBox" class="error" style="display:none"></div>
+
+    <form id="loginForm" autocomplete="on">
+      <div class="form-group">
+        <label for="email">Email or phone number</label>
+        <input id="email" name="email" type="email" placeholder="Enter email or phone" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Enter password" required minlength="4">
+      </div>
+
+      <div class="controls">
+        <label class="checkbox"><input id="remember" type="checkbox"> Remember me</label>
+        <label style="font-size:13px;color:#b3b3b3;cursor:pointer"><input id="showPwd" type="checkbox" style="margin-right:8px;vertical-align:middle"> Show password</label>
+      </div>
+
+      <button type="submit" class="btn">Sign In</button>
+
+      <div class="divider"></div>
+
+      <div class="help">New to Netflix? <a href="#">Sign up now</a>.</div>
+      <div class="small">This page is a local replica for learning — it does not actually authenticate with any real service.</div>
+
+      <div class="legal">This is a mockup inspired by a popular streaming service's login page. Do not use real credentials.</div>
+    </form>
+  </main>
+
+  <script>
+    const showPwd = document.getElementById('showPwd');
+    const pwdInput = document.getElementById('password');
+    const form = document.getElementById('loginForm');
+    const errorBox = document.getElementById('errorBox');
+
+    showPwd.addEventListener('change', () => {
+      pwdInput.type = showPwd.checked ? 'text' : 'password';
+    });
+
+    function showError(msg){
+      errorBox.textContent = msg; errorBox.style.display='block';
+      errorBox.style.animation='shake 0.4s ease';
+      setTimeout(()=>{ errorBox.style.display='none'; }, 5000);
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = pwdInput.value;
+
+      if(!email){ showError('Please enter your email or phone number.'); return; }
+      const looksLikeEmail = /@/.test(email) || /^\d{6,}$/.test(email);
+      if(!looksLikeEmail){ showError('Please enter a valid email or phone.'); return; }
+      if(password.length < 4){ showError('Password must be at least 4 characters.'); return; }
+
+      const btn = form.querySelector('.btn');
+      btn.disabled = true; btn.textContent = 'Signing in...';
+      setTimeout(()=>{
+        btn.disabled = false; btn.textContent = 'Sign In';
+        if(password.toLowerCase() === 'password'){
+          showError('Incorrect password. Please try again.');
+        } else {
+          document.body.innerHTML = `
+            <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;animation:fadeInBg 1s ease forwards">
+              <h1 style="color:#e50914;font-size:42px;margin-bottom:8px">Welcome! 🎉</h1>
+              <p style="color:#bdbdbd;font-size:18px">You have signed in (mock). This page is a local demo only.</p>
+            </div>`;
+        }
+      }, 900);
+    });
+  </script>
+</body>
+</html>
