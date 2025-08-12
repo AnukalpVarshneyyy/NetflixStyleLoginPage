@@ -36,6 +36,3 @@ This project is a **pixel-perfect replica** of Netflix’s login screen, complet
 Built by **Anukalp Varshney** as a front-end practice project — blending creativity, clean design, and smooth animations.
 
 ---
-
-If you want, I can now turn this into a **README.md** with perfect GitHub Markdown formatting so you can just upload it directly.
-Do you want me to prepare that file?
